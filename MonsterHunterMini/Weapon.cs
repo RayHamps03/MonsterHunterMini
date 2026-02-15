@@ -4,9 +4,9 @@ using System.Text;
 
 namespace MonsterHunterMini;
 
-internal class Weapons
+internal class Weapon
 {
-    public Weapons(string weaponName, int weaponAttStat)
+    public Weapon(string weaponName, int weaponAttStat)
     {
         Name = weaponName;
         Attack = weaponAttStat;
@@ -20,7 +20,7 @@ internal class Weapons
     /// <summary>
     /// The Unique Identifier for the weapon.
     /// </summary>
-    public int weaponID { get; set; }
+    public int WeaponId { get; set; }
 
     /// <summary>
     /// The attack stat of the weapon, which determines 
@@ -28,6 +28,6 @@ internal class Weapons
     /// </summary>
     public int Attack { get; set; }
 
-    public Material[]? materials { get; set; }
+    public List<Material>? Materials { get; set; }
 
 }
