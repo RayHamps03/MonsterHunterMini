@@ -28,6 +28,6 @@ internal class Armor
     /// </summary>
     public int Defense { get; set; }
 
-    public Material[]? materials { get; set; }
+    public List<Material>? materials { get; set; }
 
 }

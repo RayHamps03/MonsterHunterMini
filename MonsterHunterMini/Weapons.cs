@@ -28,6 +28,6 @@ internal class Weapons
     /// </summary>
     public int Attack { get; set; }
 
-    public Material[]? materials { get; set; }
+    public List<Material>? materials { get; set; }
 
 }
