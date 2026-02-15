@@ -20,7 +20,7 @@ internal class Armor
     /// <summary>
     /// The Unique Identifier for the armor set.
     /// </summary>
-    public int weaponID { get; set; }
+    public int WeaponId { get; set; }
 
     /// <summary>
     /// The attack stat of the weapon, which determines 
@@ -28,6 +28,6 @@ internal class Armor
     /// </summary>
     public int Defense { get; set; }
 
-    public List<Material>? materials { get; set; }
+    public List<Material>? Materials { get; set; }
 
 }
