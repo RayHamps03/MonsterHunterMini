@@ -15,7 +15,7 @@ internal class Monster
     /// <param name="monstAttStat">The attack statistic value for the monster.</param>
     /// <param name="monstDefStat">The defense statistic value for the monster.</param>
     /// <param name="materials">An array of materials that the monster can drop. Cannot be null.</param>
-    public Monster(string monstName, int monstAttStat, int monstDefStat, Material[] materials)
+    public Monster(string monstName, int monstAttStat, int monstDefStat, List<Material> materials)
     {
         Name = monstName;
         Attack = monstAttStat;
@@ -41,5 +41,5 @@ internal class Monster
     /// </summary>
     public int Defense { get; set; }
 
-    public Material[]? Drops { get; set; }
+    public List<Material>? Drops { get; set; }
 }
