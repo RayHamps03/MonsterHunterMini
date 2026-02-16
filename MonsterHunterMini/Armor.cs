@@ -6,7 +6,7 @@ namespace MonsterHunterMini;
 
 internal class Armor
 {
-    public Armor(string armorName, int armorDefStat)
+    public Armor(string armorName, double armorDefStat)
     {
         Name = armorName;
         Defense = armorDefStat;
@@ -26,7 +26,7 @@ internal class Armor
     /// The attack stat of the weapon, which determines 
     /// how much damage it can deal to monsters.
     /// </summary>
-    public int Defense { get; set; }
+    public double Defense { get; set; }
 
     public Material[]? materials { get; set; }
 
