@@ -6,7 +6,7 @@ namespace MonsterHunterMini;
 
 internal class Weapon
 {
-    public Weapon(string weaponName, int weaponAttStat)
+    public Weapon(string weaponName, double weaponAttStat)
     {
         Name = weaponName;
         Attack = weaponAttStat;
@@ -26,7 +26,7 @@ internal class Weapon
     /// The attack stat of the weapon, which determines 
     /// how much damage it can deal to monsters.
     /// </summary>
-    public int Attack { get; set; }
+    public double Attack { get; set; }
 
     public List<Material>? Materials { get; set; }
 
