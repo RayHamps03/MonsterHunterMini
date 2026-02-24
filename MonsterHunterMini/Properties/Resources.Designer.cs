@@ -63,9 +63,39 @@ namespace MonsterHunterMini.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BattleBG {
+            get {
+                object obj = ResourceManager.GetObject("BattleBG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap HunterListIcon {
+            get {
+                object obj = ResourceManager.GetObject("HunterListIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap InfoBG {
             get {
                 object obj = ResourceManager.GetObject("InfoBG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MainBG {
+            get {
+                object obj = ResourceManager.GetObject("MainBG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

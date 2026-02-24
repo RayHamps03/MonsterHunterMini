@@ -117,12 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label2.Text" xml:space="preserve">
-    <value>MONSTER HUNTER Mini is a strategic single player experience inspired 
-by the Monster Hunter franchise. You take the role of a Monster Hunter, 
-seeking out monsters to defeat for glory, as well as various weapons and gear. 
-You'll get to select a hunt (with varying difficulties) to fight a monster; 
-the more difficult the hunt the better the gear!
-</value>
-  </data>
 </root>

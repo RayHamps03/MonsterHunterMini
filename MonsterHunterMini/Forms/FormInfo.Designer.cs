@@ -42,7 +42,7 @@
             buttonReturn.TabIndex = 3;
             buttonReturn.Text = "Return";
             buttonReturn.UseVisualStyleBackColor = true;
-            buttonReturn.Click += this.buttonReturn_Click;
+            buttonReturn.Click += buttonReturn_Click;
             // 
             // label1
             // 
@@ -72,7 +72,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImage = Properties.Resources.InfoBG;
             ClientSize = new Size(884, 561);
             Controls.Add(label2);
             Controls.Add(label1);
