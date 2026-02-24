@@ -1,3 +1,5 @@
+using MonsterHunterMini.Forms;
+
 namespace MonsterHunterMini
 {
     public partial class Form1 : Form
@@ -16,6 +18,13 @@ namespace MonsterHunterMini
         {
             FormInfo info = new FormInfo();
             info.Show();
+            this.Hide();
+        }
+
+        private void buttonPlay_Click(object sender, EventArgs e)
+        {
+            FormBattle battle = new FormBattle();
+            battle.Show();
             this.Hide();
         }
     }
