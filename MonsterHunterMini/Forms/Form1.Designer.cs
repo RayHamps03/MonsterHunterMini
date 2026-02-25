@@ -55,6 +55,7 @@
             buttonPlay.TabIndex = 1;
             buttonPlay.Text = "Play";
             buttonPlay.UseVisualStyleBackColor = true;
+            buttonPlay.Click += buttonPlay_Click;
             // 
             // buttonInfo
             // 
