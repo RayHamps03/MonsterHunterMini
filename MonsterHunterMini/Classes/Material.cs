@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace MonsterHunterMini;
 
-internal class Material
+public class Material
 {
     /// <summary>
     /// Creates a new Material with the given name.
@@ -17,6 +18,7 @@ internal class Material
     /// <summary>
     /// The unique identifier for the material.
     /// </summary>
+    [Key]
     public int MaterialId { get; set; }
 
     /// <summary>

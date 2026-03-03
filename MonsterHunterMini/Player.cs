@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace MonsterHunterMini
 {
-    internal class Player
+    public class Player
     {
         /// <summary>
         /// Initializes a new instance of the Player class with the specified player name, equipping a default weapon
@@ -25,6 +26,7 @@ namespace MonsterHunterMini
         /// The unique identifier for the player. 
         /// Used to track the player's progress, inventory, and other game-related data.
         /// </summary>
+        [Key]
         public int PlayerId { get; set; }
 
         /// <summary>

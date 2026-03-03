@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace MonsterHunterMini;
 
-internal class Monster
+public class Monster
 {
 
     /// <summary>
@@ -25,6 +26,7 @@ internal class Monster
     /// <summary>
     /// The unique identifier for the monster.
     /// </summary>
+    [Key]
     public int MonsterId { get; set; }
     /// <summary>
     /// The name of the monster.

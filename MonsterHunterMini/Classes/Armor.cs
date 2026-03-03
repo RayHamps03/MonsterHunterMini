@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace MonsterHunterMini;
 
-internal class Armor
+public class Armor
 {
     public Armor(string armorName, double armorDefStat)
     {
@@ -20,6 +21,7 @@ internal class Armor
     /// <summary>
     /// The Unique Identifier for the armor set.
     /// </summary>
+    [Key]
     public int WeaponId { get; set; }
 
     /// <summary>
