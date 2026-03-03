@@ -2,20 +2,53 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Net.WebRequestMethods;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MonsterHunterMini.Database;
 
-public class MonsterDb : DbContext 
+public class MonsterDb
 {
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    /// <summary>
+    /// Retrieves a monster from the database by its unique identifier.
+    /// </summary>
+    /// <param name="id">The unique identifier of the monster to retrieve. Must correspond to an existing monster in the database.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the monster with the specified
+    /// identifier.</returns>
+    /// <exception cref="ArgumentException">Thrown when no monster with the specified identifier exists in the database.</exception>
+    public static async Task<Monster> GetAsync(int id)
     {
-        optionsBuilder.UseSqlServer(@"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog =MonsterHunterMiniDb; Integrated Security = True; Encrypt = False; Trust Server Certificate = False;");
+        using MonsterHunterMiniDb db = new();
+
+        // If specified id is not found, throw an exception
+        return await db.Monsters.FindAsync(id) 
+            ?? throw new ArgumentException("Invalid monster ID.");
+
     }
 
-    // Track entities in the database 
-    public DbSet<Monster> Monsters { get; set; }
+    /// <summary>
+    /// Retrieves all monsters from the database.
+    /// </summary>
+    /// <remarks>This method uses the MonsterHunterMiniDb context to access the monsters table. Ensure that
+    /// the database is properly initialized before calling this method.</remarks>
+    /// <returns>A task that represents the asynchronous operation. The task result contains a list of all monsters in the
+    /// database.</returns>
+    public static async Task<List<Monster>> GetAllMonstersAsync()
+    {
+        using MonsterHunterMiniDb db = new();
+        List<Monster> monsters = await db.Monsters.ToListAsync();
+        return monsters;
+    }
+
+    /// <summary>
+    /// Adds a new monster entity to the database by passing in a monster object.
+    /// </summary>
+    /// <remarks>This method saves changes to the database after adding the specified monster. Ensure that the
+    /// monster object is fully initialized before calling this method.</remarks>
+    /// <param name="monster">The monster to add to the database. Cannot be null.</param>
+    /// <returns>A task that represents the asynchronous add operation.</returns>
+    public static async Task AddAsync(Monster monster)
+    {
+        using MonsterHunterMiniDb db = new();
+        db.Monsters.Add(monster);
+        await db.SaveChangesAsync();
+    }
 }

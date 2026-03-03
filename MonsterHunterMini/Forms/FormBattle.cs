@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MonsterHunterMini.Database;
+using MonsterHunterMini;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,8 +28,9 @@ namespace MonsterHunterMini.Forms
             DetermineWin((int)winRate);
         }
 
-        // TEMPORARY CODE - Database connection to get monster here
-        Monster HuntedMonster = new Monster("Rathalos", 7, 7, null);
+        // The hunted monster instance. Can be provided via constructor.
+        Monster HuntedMonster;
+        
         Player p1 = new Player("Hunter");
         
 
@@ -50,6 +53,12 @@ namespace MonsterHunterMini.Forms
             // Ensure the win rate is between 0% and 100%
             winRate = Math.Max(0, Math.Min(100, winRate));
             return winRate;
+        }
+
+        // Allow creating a battle for a specific monster
+        public FormBattle(Monster hunted) : this()
+        {
+            HuntedMonster = hunted;
         }
 
         void DetermineWin(int winRate)

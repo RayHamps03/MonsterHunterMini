@@ -10,7 +10,7 @@ using MonsterHunterMini.Database;
 
 namespace MonsterHunterMini.Migrations
 {
-    [DbContext(typeof(MonsterDb))]
+    [DbContext(typeof(MonsterHunterMiniDb))]
     [Migration("20260303185742_AddedMonster")]
     partial class AddedMonster
     {

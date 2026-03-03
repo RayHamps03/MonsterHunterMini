@@ -9,7 +9,7 @@ using MonsterHunterMini.Database;
 
 namespace MonsterHunterMini.Migrations
 {
-    [DbContext(typeof(MonsterDb))]
+    [DbContext(typeof(MonsterHunterMiniDb))]
     partial class MonsterDbModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
