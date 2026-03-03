@@ -18,12 +18,18 @@ namespace MonsterHunterMini.Forms
             buttonStart.Click += buttonStart_Click;
         }
 
+
         private async void QuestSelect_Load(object sender, EventArgs e)
         {
             // Load monsters from the database and bind to the list box
             _ = LoadMonstersAsync();
         }
 
+        /// <summary>
+        /// Asynchronously loads the list of monsters from the database and binds them to the quest selection list.
+        /// </summary>
+        /// <remarks>This method retrieves all available monsters using the MonsterDb and sets the display
+        /// and value members for the quest selection list.</remarks>
         private async Task LoadMonstersAsync()
         {
             List<Monster> monsters = await MonsterDb.GetAllMonstersAsync();

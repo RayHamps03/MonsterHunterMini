@@ -17,6 +17,12 @@ namespace MonsterHunterMini.Forms
             InitializeComponent();
         }
 
+        // Allow creating a battle for a specific monster
+        public FormBattle(Monster hunted) : this()
+        {
+            HuntedMonster = hunted;
+        }
+
         private void FormBattle_Load(object sender, EventArgs e)
         {
             label1.Text = $"A {HuntedMonster.Name} appears!";
@@ -24,21 +30,19 @@ namespace MonsterHunterMini.Forms
 
         private void buttonBegin_Click(object sender, EventArgs e)
         {
+            
             double winRate = CalculateWinRate(p1, HuntedMonster);
             DetermineWin((int)winRate);
         }
 
         // The hunted monster instance. Can be provided via constructor.
         Monster HuntedMonster;
-        
         Player p1 = new Player("Hunter");
         
 
         // TEMPORARY CODE - Battle logic here
         // baseWinRate will be a variable determined from quest difficulty
         double baseWinRate = 80;
-
-
 
         double CalculateWinRate(Player player, Monster monster)
         {
@@ -53,12 +57,6 @@ namespace MonsterHunterMini.Forms
             // Ensure the win rate is between 0% and 100%
             winRate = Math.Max(0, Math.Min(100, winRate));
             return winRate;
-        }
-
-        // Allow creating a battle for a specific monster
-        public FormBattle(Monster hunted) : this()
-        {
-            HuntedMonster = hunted;
         }
 
         void DetermineWin(int winRate)
