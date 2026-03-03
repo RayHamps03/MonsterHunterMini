@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace MonsterHunterMini;
@@ -8,6 +9,8 @@ namespace MonsterHunterMini;
 public class Monster
 {
 
+    // Parameterless constructor required by EF Core at design-time and runtime
+    protected Monster() { }
     /// <summary>
     /// Creates a new Monster with the specified name, attack and defense statistics, and drop
     /// materials.
@@ -16,6 +19,7 @@ public class Monster
     /// <param name="monstAttStat">The attack statistic value for the monster.</param>
     /// <param name="monstDefStat">The defense statistic value for the monster.</param>
     /// <param name="materials">An array of materials that the monster can drop. Cannot be null.</param>
+    [SetsRequiredMembers]
     public Monster(string monstName, int monstAttStat, int monstDefStat, List<Material> materials)
     {
         Name = monstName;
@@ -31,7 +35,7 @@ public class Monster
     /// <summary>
     /// The name of the monster.
     /// </summary>
-    public string Name { get; set; }
+    public required string Name { get; set; }
     /// <summary>
     /// The attack stat of the monster, used to determine
     /// how much damage is dealt to the player.

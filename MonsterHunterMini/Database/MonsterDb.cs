@@ -17,6 +17,5 @@ public class MonsterDb : DbContext
     }
 
     // Track entities in the database 
-
     public DbSet<Monster> Monsters { get; set; }
 }
