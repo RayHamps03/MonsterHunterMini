@@ -23,7 +23,7 @@ namespace MonsterHunterMini
 
         private void buttonPlay_Click(object sender, EventArgs e)
         {
-            FormBattle battle = new FormBattle();
+            QuestSelect battle = new QuestSelect();
             battle.Show();
             this.Hide();
         }
