@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace MonsterHunterMini;
 
 public class Weapon
 {
+    public Weapon() { }
+
+    [SetsRequiredMembers]
     public Weapon(string weaponName, double weaponAttStat)
     {
         Name = weaponName;
@@ -16,7 +20,7 @@ public class Weapon
     /// <summary>
     /// Name of the weapon.
     /// </summary>
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// The Unique Identifier for the weapon.
