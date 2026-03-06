@@ -19,6 +19,6 @@ public class MonsterHunterMiniDb : DbContext
     // Track entities in the database 
     public DbSet<Monster> Monsters { get; set; }
 
-    
+    public DbSet<Player> Players { get; set; }
 
 }
