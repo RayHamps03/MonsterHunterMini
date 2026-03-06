@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace MonsterHunterMini
 {
     public class Player
     {
+        public Player() { }
+
         /// <summary>
         /// Initializes a new instance of the Player class with the specified player name, equipping a default weapon
         /// and armor.
@@ -14,6 +17,7 @@ namespace MonsterHunterMini
         /// <remarks>The player is initialized with a default weapon, 'Bone Sword', and default armor,
         /// 'Hunter's Set'. These starting items can be changed as the game progresses.</remarks>
         /// <param name="playerName">The name of the player. This value is used to identify the player within the game.</param>
+        [SetsRequiredMembers]
         public Player(string playerName)
         {
             Name = playerName;
@@ -32,17 +36,17 @@ namespace MonsterHunterMini
         /// <summary>
         /// The name of the player. This value is inputted by the user.
         /// </summary>
-        public string Name { get; set; }
+        public required string Name { get; set; }
         /// <summary>
         /// The current equipped weapon of the player used as a factor to determine 
         /// the player's chance at victory.
         /// </summary>
-        public Weapon EquippedWeapon { get; set; }
+        public required Weapon EquippedWeapon { get; set; }
         /// <summary>
         /// The current equipped armor of the player used as a factor to determine
         /// the player's chance at victory.
         /// </summary>
-        public Armor EquippedArmor { get; set; }
+        public required Armor EquippedArmor { get; set; }
         /// <summary>
         /// A list of materials that the player has collected through defeating monsters.
         /// </summary>
