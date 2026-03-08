@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using MonsterHunterMini.Database;
 using MonsterHunterMini.Forms;
 
 namespace MonsterHunterMini
@@ -21,11 +23,28 @@ namespace MonsterHunterMini
             this.Hide();
         }
 
-        private void buttonPlay_Click(object sender, EventArgs e)
+        private async void buttonPlay_Click(object sender, EventArgs e)
         {
-            QuestSelect battle = new QuestSelect();
-            battle.Show();
-            this.Hide();
+            using MonsterHunterMiniDb db = new();
+
+            // Checks if there are any users in the database
+            bool userExists = await db.Players.AnyAsync();
+
+            if (!userExists)
+            {
+                // Create user if no user exists in the database
+                CreateUserForm newUser = new();
+                newUser.ShowDialog();
+                return;
+            }
+            else
+            {
+                QuestSelect battle = new QuestSelect();
+                battle.Show();
+                this.Hide();
+            }
+            
+            
         }
     }
 }

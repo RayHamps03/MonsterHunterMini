@@ -36,6 +36,7 @@ namespace MonsterHunterMini
         /// <summary>
         /// The name of the player. This value is inputted by the user.
         /// </summary>
+        [StringLength(20, MinimumLength = 1, ErrorMessage = "Player name must be between 1 and 50 characters.")]
         public required string Name { get; set; }
         /// <summary>
         /// The current equipped weapon of the player used as a factor to determine 
