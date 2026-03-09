@@ -43,8 +43,15 @@ namespace MonsterHunterMini
                 battle.Show();
                 this.Hide();
             }
-            
-            
+
+
+        }
+
+        private void buttonCraftUpgrade_Click(object sender, EventArgs e)
+        {
+            FormCraftUpgradeSelect craftUpgradeSelect = new FormCraftUpgradeSelect();
+            craftUpgradeSelect.Show();
+            this.Hide();
         }
     }
 }
