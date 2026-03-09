@@ -58,6 +58,7 @@
             btnSave.TabIndex = 2;
             btnSave.Text = "Create Player";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // CreateUserForm
             // 
