@@ -10,7 +10,7 @@ public class Material
     // Parameterless constructor required by EF Core at design-time and runtime
     // EF Core can only bind constructor parameters that match mapped properties.
     // Providing a parameterless ctor ensures the framework can create instances.
-    protected Material() { }
+    public Material() { }
     /// <summary>
     /// Creates a new Material with the given name.
     /// </summary>

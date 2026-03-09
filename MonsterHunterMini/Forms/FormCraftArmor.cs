@@ -8,18 +8,11 @@ using System.Windows.Forms;
 
 namespace MonsterHunterMini.Forms
 {
-    public partial class FormCraftUpgradeSelect : Form
+    public partial class FormCraftArmor : Form
     {
-        public FormCraftUpgradeSelect()
+        public FormCraftArmor()
         {
             InitializeComponent();
-        }
-
-        private void buttonExit_Click(object sender, EventArgs e)
-        {
-            Close();
-            Form1 form1 = new Form1();
-            form1.Show();
         }
     }
 }

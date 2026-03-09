@@ -26,7 +26,7 @@ public class Armor
     /// The Unique Identifier for the armor set.
     /// </summary>
     [Key]
-    public int WeaponId { get; set; }
+    public int ArmorId { get; set; }
 
     /// <summary>
     /// The attack stat of the weapon, which determines 

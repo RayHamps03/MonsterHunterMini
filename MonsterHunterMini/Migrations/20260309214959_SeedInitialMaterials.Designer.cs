@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MonsterHunterMini.Database;
 
@@ -10,9 +11,11 @@ using MonsterHunterMini.Database;
 namespace MonsterHunterMini.Migrations
 {
     [DbContext(typeof(MonsterHunterMiniDb))]
-    partial class MonsterDbModelSnapshot : ModelSnapshot
+    [Migration("20260309214959_SeedInitialMaterials")]
+    partial class SeedInitialMaterials
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,11 +26,11 @@ namespace MonsterHunterMini.Migrations
 
             modelBuilder.Entity("MonsterHunterMini.Armor", b =>
                 {
-                    b.Property<int>("ArmorId")
+                    b.Property<int>("WeaponId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArmorId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WeaponId"));
 
                     b.Property<double>("Defense")
                         .HasColumnType("float");
@@ -36,7 +39,7 @@ namespace MonsterHunterMini.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ArmorId");
+                    b.HasKey("WeaponId");
 
                     b.ToTable("Armor");
                 });
@@ -49,7 +52,7 @@ namespace MonsterHunterMini.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaterialId"));
 
-                    b.Property<int?>("ArmorId")
+                    b.Property<int?>("ArmorWeaponId")
                         .HasColumnType("int");
 
                     b.Property<int?>("MonsterId")
@@ -67,7 +70,7 @@ namespace MonsterHunterMini.Migrations
 
                     b.HasKey("MaterialId");
 
-                    b.HasIndex("ArmorId");
+                    b.HasIndex("ArmorWeaponId");
 
                     b.HasIndex("MonsterId");
 
@@ -200,7 +203,7 @@ namespace MonsterHunterMini.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlayerId"));
 
-                    b.Property<int>("EquippedArmorArmorId")
+                    b.Property<int>("EquippedArmorWeaponId")
                         .HasColumnType("int");
 
                     b.Property<int>("EquippedWeaponWeaponId")
@@ -213,7 +216,7 @@ namespace MonsterHunterMini.Migrations
 
                     b.HasKey("PlayerId");
 
-                    b.HasIndex("EquippedArmorArmorId");
+                    b.HasIndex("EquippedArmorWeaponId");
 
                     b.HasIndex("EquippedWeaponWeaponId");
 
@@ -244,7 +247,7 @@ namespace MonsterHunterMini.Migrations
                 {
                     b.HasOne("MonsterHunterMini.Armor", null)
                         .WithMany("Materials")
-                        .HasForeignKey("ArmorId");
+                        .HasForeignKey("ArmorWeaponId");
 
                     b.HasOne("MonsterHunterMini.Monster", null)
                         .WithMany("Drops")
@@ -263,7 +266,7 @@ namespace MonsterHunterMini.Migrations
                 {
                     b.HasOne("MonsterHunterMini.Armor", "EquippedArmor")
                         .WithMany()
-                        .HasForeignKey("EquippedArmorArmorId")
+                        .HasForeignKey("EquippedArmorWeaponId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

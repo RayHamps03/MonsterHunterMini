@@ -69,6 +69,7 @@
             buttonExit.TabIndex = 3;
             buttonExit.Text = "Exit";
             buttonExit.UseVisualStyleBackColor = true;
+            buttonExit.Click += buttonExit_Click;
             // 
             // FormCraftUpgradeSelect
             // 
