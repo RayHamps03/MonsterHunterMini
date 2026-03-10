@@ -30,15 +30,15 @@ public class MonsterHunterMiniDb : DbContext
 
         // Seed the database with Materials
         modelBuilder.Entity<Material>().HasData(
-            new Material { MaterialId = 1, Name = "Rathalos Scale"},
-            new Material { MaterialId = 2, Name = "Rathalos Tail" },
-            new Material { MaterialId = 3, Name = "Rathalos Webbing" },
-            new Material { MaterialId = 4, Name = "Rathian Scale"},
-            new Material { MaterialId = 5, Name = "Rathian Tail" },
-            new Material { MaterialId = 6, Name = "Rathian Webbing" },
-            new Material { MaterialId = 7, Name = "Diablos Ridge" },
-            new Material { MaterialId = 8, Name = "Diablos Tailcase" },
-            new Material { MaterialId = 9, Name = "Twisted Horn" }
+            new Material { MaterialId = 1, Name = "Rathalos Scale", MonsterId = 1},
+            new Material { MaterialId = 2, Name = "Rathalos Tail", MonsterId = 1},
+            new Material { MaterialId = 3, Name = "Rathalos Webbing", MonsterId = 1},
+            new Material { MaterialId = 4, Name = "Rathian Scale", MonsterId = 2},
+            new Material { MaterialId = 5, Name = "Rathian Tail", MonsterId = 2},
+            new Material { MaterialId = 6, Name = "Rathian Webbing", MonsterId = 2},
+            new Material { MaterialId = 7, Name = "Diablos Ridge", MonsterId = 3},
+            new Material { MaterialId = 8, Name = "Diablos Tailcase", MonsterId = 3},
+            new Material { MaterialId = 9, Name = "Twisted Horn", MonsterId = 3}
         );
 
         

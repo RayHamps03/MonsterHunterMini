@@ -30,5 +30,15 @@ public class Material
     /// The name of the material.
     /// </summary>
     public required string Name { get; set; }
-    
+
+    /// <summary>
+    /// Foreign key property to establish the relationship with the Monster entity.
+    /// </summary>
+    public int? MonsterId { get; set; }
+
+    /// <summary>
+    /// Navigation property to the related Monster entity.
+    /// </summary>
+    public Monster? Monster { get; set; }
+
 }
