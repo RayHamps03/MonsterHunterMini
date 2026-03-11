@@ -6,7 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using MonsterHunterMini.Database;
-using MonsterHunterMini;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using MonsterHunterMini.Classes;
 
 namespace MonsterHunterMini.Forms
 {
@@ -41,8 +42,9 @@ namespace MonsterHunterMini.Forms
         private async void buttonStart_Click(object? sender, EventArgs e)
         {
             // Get the selected monster and load the player data
-            Monster? selected = listQuests.SelectedItem as Monster;
+            int selectedId = (int)listQuests.SelectedValue;
             Player player = await PlayerDb.LoadPlayerAsync(1);
+            Monster selected = await MonsterDb.LoadMonsterAsync(selectedId);
 
             if (selected == null)
             {

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MonsterHunterMini.Database;
 
@@ -10,9 +11,11 @@ using MonsterHunterMini.Database;
 namespace MonsterHunterMini.Migrations
 {
     [DbContext(typeof(MonsterHunterMiniDb))]
-    partial class MonsterDbModelSnapshot : ModelSnapshot
+    [Migration("20260311002935_AddDropRate")]
+    partial class AddDropRate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,26 +42,6 @@ namespace MonsterHunterMini.Migrations
                     b.HasKey("ArmorId");
 
                     b.ToTable("Armor");
-
-                    b.HasData(
-                        new
-                        {
-                            ArmorId = 1,
-                            Defense = 12.0,
-                            Name = "Rathalos Set"
-                        },
-                        new
-                        {
-                            ArmorId = 2,
-                            Defense = 10.0,
-                            Name = "Rathian Set"
-                        },
-                        new
-                        {
-                            ArmorId = 3,
-                            Defense = 15.0,
-                            Name = "Diablos Set"
-                        });
                 });
 
             modelBuilder.Entity("MonsterHunterMini.Material", b =>
@@ -104,83 +87,65 @@ namespace MonsterHunterMini.Migrations
                         new
                         {
                             MaterialId = 1,
-                            ArmorId = 1,
                             DropRate = 0.6m,
                             MonsterId = 1,
-                            Name = "Rathalos Scale",
-                            WeaponId = 1
+                            Name = "Rathalos Scale"
                         },
                         new
                         {
                             MaterialId = 2,
-                            ArmorId = 1,
                             DropRate = 0.5m,
                             MonsterId = 1,
-                            Name = "Rathalos Tail",
-                            WeaponId = 1
+                            Name = "Rathalos Tail"
                         },
                         new
                         {
                             MaterialId = 3,
-                            ArmorId = 1,
                             DropRate = 0.4m,
                             MonsterId = 1,
-                            Name = "Rathalos Webbing",
-                            WeaponId = 1
+                            Name = "Rathalos Webbing"
                         },
                         new
                         {
                             MaterialId = 4,
-                            ArmorId = 2,
                             DropRate = 0.6m,
                             MonsterId = 2,
-                            Name = "Rathian Scale",
-                            WeaponId = 2
+                            Name = "Rathian Scale"
                         },
                         new
                         {
                             MaterialId = 5,
-                            ArmorId = 2,
                             DropRate = 0.5m,
                             MonsterId = 2,
-                            Name = "Rathian Tail",
-                            WeaponId = 2
+                            Name = "Rathian Tail"
                         },
                         new
                         {
                             MaterialId = 6,
-                            ArmorId = 2,
                             DropRate = 0.4m,
                             MonsterId = 2,
-                            Name = "Rathian Webbing",
-                            WeaponId = 2
+                            Name = "Rathian Webbing"
                         },
                         new
                         {
                             MaterialId = 7,
-                            ArmorId = 3,
                             DropRate = 0.6m,
                             MonsterId = 3,
-                            Name = "Diablos Ridge",
-                            WeaponId = 3
+                            Name = "Diablos Ridge"
                         },
                         new
                         {
                             MaterialId = 8,
-                            ArmorId = 3,
                             DropRate = 0.4m,
                             MonsterId = 3,
-                            Name = "Diablos Tailcase",
-                            WeaponId = 3
+                            Name = "Diablos Tailcase"
                         },
                         new
                         {
                             MaterialId = 9,
-                            ArmorId = 3,
                             DropRate = 0.25m,
                             MonsterId = 3,
-                            Name = "Twisted Horn",
-                            WeaponId = 3
+                            Name = "Twisted Horn"
                         });
                 });
 
@@ -297,31 +262,11 @@ namespace MonsterHunterMini.Migrations
                     b.HasKey("WeaponId");
 
                     b.ToTable("Weapon");
-
-                    b.HasData(
-                        new
-                        {
-                            WeaponId = 1,
-                            Attack = 10.0,
-                            Name = "Rathalos Greatsword"
-                        },
-                        new
-                        {
-                            WeaponId = 2,
-                            Attack = 9.0,
-                            Name = "Rathian Greatsword"
-                        },
-                        new
-                        {
-                            WeaponId = 3,
-                            Attack = 12.0,
-                            Name = "Diablos Greatsword"
-                        });
                 });
 
             modelBuilder.Entity("MonsterHunterMini.Material", b =>
                 {
-                    b.HasOne("MonsterHunterMini.Armor", "Armor")
+                    b.HasOne("MonsterHunterMini.Armor", null)
                         .WithMany("Materials")
                         .HasForeignKey("ArmorId");
 
@@ -329,21 +274,15 @@ namespace MonsterHunterMini.Migrations
                         .WithMany("Drops")
                         .HasForeignKey("MonsterId");
 
-                    b.HasOne("MonsterHunterMini.Player", "Player")
+                    b.HasOne("MonsterHunterMini.Player", null)
                         .WithMany("Inventory")
                         .HasForeignKey("PlayerId");
 
-                    b.HasOne("MonsterHunterMini.Weapon", "Weapon")
+                    b.HasOne("MonsterHunterMini.Weapon", null)
                         .WithMany("Materials")
                         .HasForeignKey("WeaponId");
 
-                    b.Navigation("Armor");
-
                     b.Navigation("Monster");
-
-                    b.Navigation("Player");
-
-                    b.Navigation("Weapon");
                 });
 
             modelBuilder.Entity("MonsterHunterMini.Player", b =>

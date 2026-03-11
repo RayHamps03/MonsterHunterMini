@@ -51,4 +51,18 @@ public class MonsterDb
         db.Monsters.Add(monster);
         await db.SaveChangesAsync();
     }
+
+    /// <summary>
+    /// Retrieves a monster from the database by its unique identifier and loads its related drops.
+    /// </summary>
+    /// <param name="id">The unique identifier of the monster to load. Must be a positive integer.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the loaded Monster object.</returns>
+    public static async Task<Monster> LoadMonsterAsync(int id)
+    {
+        using MonsterHunterMiniDb db = new();
+        var monster = await db.Monsters
+            .Include(m => m.Drops)
+            .FirstAsync(m => m.MonsterId == id);
+        return monster;
+    }
 }

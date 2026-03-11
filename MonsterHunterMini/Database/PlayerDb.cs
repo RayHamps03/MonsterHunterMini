@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MonsterHunterMini.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,5 +39,6 @@ namespace MonsterHunterMini.Database
                 .Include(p => p.Inventory)
                 .FirstAsync(p => p.PlayerId == id);
         }
+
     }
 }

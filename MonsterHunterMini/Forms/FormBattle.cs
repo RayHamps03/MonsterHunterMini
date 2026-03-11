@@ -1,5 +1,4 @@
 ﻿using MonsterHunterMini.Database;
-using MonsterHunterMini;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using MonsterHunterMini.Classes;
 
 namespace MonsterHunterMini.Forms
 {
@@ -85,8 +85,8 @@ namespace MonsterHunterMini.Forms
             {
                 MessageBox.Show("You win!");
                 this.Close();
-                Form1 mainMenu = new Form1();
-                mainMenu.Show();
+                FormBattleResult result = new(HuntedMonster);
+                result.Show();
             }
             else
             {

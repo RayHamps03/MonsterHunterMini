@@ -1,4 +1,5 @@
-﻿using MonsterHunterMini.Database;
+﻿using MonsterHunterMini.Classes;
+using MonsterHunterMini.Database;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
