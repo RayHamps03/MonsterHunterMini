@@ -38,9 +38,12 @@ namespace MonsterHunterMini.Forms
             listQuests.DataSource = monsters;
         }
 
-        private void buttonStart_Click(object? sender, EventArgs e)
+        private async void buttonStart_Click(object? sender, EventArgs e)
         {
+            // Get the selected monster and load the player data
             Monster? selected = listQuests.SelectedItem as Monster;
+            Player player = await PlayerDb.LoadPlayerAsync(1);
+
             if (selected == null)
             {
                 MessageBox.Show("Please select a monster to hunt.");
@@ -48,7 +51,7 @@ namespace MonsterHunterMini.Forms
             }
 
             // Open the battle form for the selected monster
-            FormBattle battle = new FormBattle(selected);
+            FormBattle battle = new FormBattle(selected, player);
             battle.Show();
             this.Close();
         }
