@@ -33,6 +33,7 @@
             buttonPlay = new Button();
             buttonInfo = new Button();
             buttonQuit = new Button();
+            buttonCraftUpgrade = new Button();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             SuspendLayout();
             // 
@@ -59,7 +60,7 @@
             // 
             // buttonInfo
             // 
-            buttonInfo.Location = new Point(48, 160);
+            buttonInfo.Location = new Point(48, 272);
             buttonInfo.Name = "buttonInfo";
             buttonInfo.Size = new Size(150, 50);
             buttonInfo.TabIndex = 2;
@@ -69,13 +70,23 @@
             // 
             // buttonQuit
             // 
-            buttonQuit.Location = new Point(48, 240);
+            buttonQuit.Location = new Point(48, 357);
             buttonQuit.Name = "buttonQuit";
             buttonQuit.Size = new Size(150, 50);
             buttonQuit.TabIndex = 3;
             buttonQuit.Text = "Quit";
             buttonQuit.UseVisualStyleBackColor = true;
             buttonQuit.Click += buttonQuit_Click;
+            // 
+            // buttonCraftUpgrade
+            // 
+            buttonCraftUpgrade.Location = new Point(48, 178);
+            buttonCraftUpgrade.Name = "buttonCraftUpgrade";
+            buttonCraftUpgrade.Size = new Size(150, 50);
+            buttonCraftUpgrade.TabIndex = 4;
+            buttonCraftUpgrade.Text = "Craft/Upgrade";
+            buttonCraftUpgrade.UseVisualStyleBackColor = true;
+            buttonCraftUpgrade.Click += buttonCraftUpgrade_Click;
             // 
             // Form1
             // 
@@ -84,6 +95,7 @@
             BackColor = SystemColors.Control;
             BackgroundImage = Properties.Resources.MainMenuBG;
             ClientSize = new Size(884, 561);
+            Controls.Add(buttonCraftUpgrade);
             Controls.Add(buttonQuit);
             Controls.Add(buttonInfo);
             Controls.Add(buttonPlay);
@@ -101,5 +113,6 @@
         private Button buttonPlay;
         private Button buttonInfo;
         private Button buttonQuit;
+        private Button buttonCraftUpgrade;
     }
 }

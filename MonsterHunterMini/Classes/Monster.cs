@@ -10,7 +10,7 @@ public class Monster
 {
 
     // Parameterless constructor required by EF Core at design-time and runtime
-    protected Monster() { }
+    public Monster() { }
     /// <summary>
     /// Creates a new Monster with the specified name, attack and defense statistics, and drop
     /// materials.

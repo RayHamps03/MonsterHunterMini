@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
-namespace MonsterHunterMini
+namespace MonsterHunterMini.Classes
 {
     public class Player
     {
@@ -36,17 +36,34 @@ namespace MonsterHunterMini
         /// <summary>
         /// The name of the player. This value is inputted by the user.
         /// </summary>
+        [StringLength(20, MinimumLength = 1, ErrorMessage = "Player name must be between 1 and 50 characters.")]
         public required string Name { get; set; }
+
+        /// <summary>
+        /// The weapon ID of the currently equipped weapon, used as a 
+        /// foreign key to establish the relationship between the Player and Weapon entities in the database.
+        /// </summary>
+        public int EquippedWeaponId { get; set; }
+
         /// <summary>
         /// The current equipped weapon of the player used as a factor to determine 
         /// the player's chance at victory.
         /// </summary>
         public required Weapon EquippedWeapon { get; set; }
+
+        /// <summary>
+        /// The armor ID of the currently equipped armor, used as a foreign
+        /// key to establish the relationship between the Player and Armor entities in the database.
+        /// </summary>
+        public int EquippedArmorId { get; set; }
+
         /// <summary>
         /// The current equipped armor of the player used as a factor to determine
         /// the player's chance at victory.
         /// </summary>
         public required Armor EquippedArmor { get; set; }
+
+
         /// <summary>
         /// A list of materials that the player has collected through defeating monsters.
         /// </summary>
