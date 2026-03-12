@@ -21,12 +21,12 @@ public class MonsterHunterMiniDb : DbContext
     {
         // Seed the database with Monsters 
         modelBuilder.Entity<Monster>().HasData(
-            new Monster { MonsterId = 1, Name = "Rathalos", Attack = 7, Defense = 7},
-            new Monster { MonsterId = 2, Name = "Rathian", Attack = 9, Defense = 7},
+            new Monster { MonsterId = 1, Name = "Rathalos", Attack = 7, Defense = 7 },
+            new Monster { MonsterId = 2, Name = "Rathian", Attack = 9, Defense = 7 },
             new Monster { MonsterId = 3, Name = "Diablos", Attack = 6, Defense = 7 },
-            new Monster { MonsterId = 4, Name = "Velocidrome", Attack = 3, Defense = 3},
+            new Monster { MonsterId = 4, Name = "Velocidrome", Attack = 3, Defense = 3 },
             new Monster { MonsterId = 5, Name = "Yian-Kut-Ku", Attack = 4, Defense = 4 },
-            new Monster { MonsterId = 6, Name = "Iodrome", Attack = 4, Defense = 3}
+            new Monster { MonsterId = 6, Name = "Iodrome", Attack = 4, Defense = 3 }
         );
 
         modelBuilder.Entity<Armor>().HasData(
@@ -45,24 +45,59 @@ public class MonsterHunterMiniDb : DbContext
 
         // Seed the database with Materials
         modelBuilder.Entity<Material>().HasData(
-            new Material { MaterialId = 1, Name = "Rathalos Scale", MonsterId = 1, ArmorId = 1, WeaponId = 1, DropRate = 0.6m},
-            new Material { MaterialId = 2, Name = "Rathalos Tail", MonsterId = 1, ArmorId = 1, WeaponId = 1, DropRate = 0.5m},
-            new Material { MaterialId = 3, Name = "Rathalos Webbing", MonsterId = 1, ArmorId = 1, WeaponId = 1, DropRate = 0.4m},
-            new Material { MaterialId = 4, Name = "Rathian Scale", MonsterId = 2, ArmorId = 2, WeaponId = 2, DropRate = 0.6m},
-            new Material { MaterialId = 5, Name = "Rathian Tail", MonsterId = 2, ArmorId = 2, WeaponId = 2, DropRate = 0.5m},
-            new Material { MaterialId = 6, Name = "Rathian Webbing", MonsterId = 2, ArmorId = 2, WeaponId = 2, DropRate = 0.4m},
-            new Material { MaterialId = 7, Name = "Diablos Ridge", MonsterId = 3, ArmorId = 3, WeaponId = 3, DropRate = 0.6m},
-            new Material { MaterialId = 8, Name = "Diablos Tailcase", MonsterId = 3, ArmorId = 3, WeaponId = 3, DropRate = 0.4m},
-            new Material { MaterialId = 9, Name = "Twisted Horn", MonsterId = 3, ArmorId = 3, WeaponId = 3, DropRate = 0.25m}
+            new Material { MaterialId = 1, Name = "Rathalos Scale", MonsterId = 1, DropRate = 0.6m },
+            new Material { MaterialId = 2, Name = "Rathalos Tail", MonsterId = 1, DropRate = 0.5m },
+            new Material { MaterialId = 3, Name = "Rathalos Webbing", MonsterId = 1, DropRate = 0.4m },
+            new Material { MaterialId = 4, Name = "Rathian Scale", MonsterId = 2, DropRate = 0.6m },
+            new Material { MaterialId = 5, Name = "Rathian Tail", MonsterId = 2, DropRate = 0.5m },
+            new Material { MaterialId = 6, Name = "Rathian Webbing", MonsterId = 2, DropRate = 0.4m },
+            new Material { MaterialId = 7, Name = "Diablos Ridge", MonsterId = 3, DropRate = 0.6m },
+            new Material { MaterialId = 8, Name = "Diablos Tailcase", MonsterId = 3, DropRate = 0.4m },
+            new Material { MaterialId = 9, Name = "Twisted Horn", MonsterId = 3, DropRate = 0.25m }
         );
+        
+        modelBuilder.Entity<Armor>()
+            .HasMany(a => a.RequiredMaterials)
+            .WithMany(m => m.RequiredByArmor)
+            .UsingEntity(j => j.HasData(
+                new { RequiredMaterialsMaterialId = 1, RequiredByArmorArmorId = 1 },
+                new { RequiredMaterialsMaterialId = 2, RequiredByArmorArmorId = 1 },
+                new { RequiredMaterialsMaterialId = 3, RequiredByArmorArmorId = 1},
+                new { RequiredMaterialsMaterialId = 4, RequiredByArmorArmorId = 2 },
+                new { RequiredMaterialsMaterialId = 5, RequiredByArmorArmorId = 2 },
+                new { RequiredMaterialsMaterialId = 6, RequiredByArmorArmorId = 2 },
+                new { RequiredMaterialsMaterialId = 7, RequiredByArmorArmorId = 3 },
+                new { RequiredMaterialsMaterialId = 8, RequiredByArmorArmorId = 3 },
+                new { RequiredMaterialsMaterialId = 9, RequiredByArmorArmorId = 3 }));
+        
+        modelBuilder.Entity<Weapon>()
+            .HasMany(w => w.RequiredMaterials)
+            .WithMany(m => m.RequiredByWeapons)
+            .UsingEntity(j => j.HasData(
+                new { RequiredMaterialsMaterialId = 1, RequiredByWeaponsWeaponId = 1 },
+                new { RequiredMaterialsMaterialId = 2, RequiredByWeaponsWeaponId = 1 },
+                new { RequiredMaterialsMaterialId = 3, RequiredByWeaponsWeaponId = 1 },
+                new { RequiredMaterialsMaterialId = 4, RequiredByWeaponsWeaponId = 2 },
+                new { RequiredMaterialsMaterialId = 5, RequiredByWeaponsWeaponId = 2 },
+                new { RequiredMaterialsMaterialId = 6, RequiredByWeaponsWeaponId = 2 },
+                new { RequiredMaterialsMaterialId = 7, RequiredByWeaponsWeaponId = 3 },
+                new { RequiredMaterialsMaterialId = 8, RequiredByWeaponsWeaponId = 3 },
+                new { RequiredMaterialsMaterialId = 9, RequiredByWeaponsWeaponId = 3 }));
 
         
-        
+
+
     }
 
     // Track entities in the database 
     public DbSet<Monster> Monsters { get; set; }
 
     public DbSet<Player> Players { get; set; }
+
+    public DbSet<Material> Materials { get; set; }
+
+    public DbSet<Weapon> Weapons { get; set; }
+
+    public DbSet<Armor> Armor { get; set; }
 
 }

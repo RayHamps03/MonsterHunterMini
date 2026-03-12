@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MonsterHunterMini.Database;
 
@@ -10,9 +11,11 @@ using MonsterHunterMini.Database;
 namespace MonsterHunterMini.Migrations
 {
     [DbContext(typeof(MonsterHunterMiniDb))]
-    partial class MonsterDbModelSnapshot : ModelSnapshot
+    [Migration("20260311215015_EquipmentSeed")]
+    partial class EquipmentSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,130 +23,6 @@ namespace MonsterHunterMini.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ArmorMaterial", b =>
-                {
-                    b.Property<int>("RequiredByArmorArmorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RequiredMaterialsMaterialId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RequiredByArmorArmorId", "RequiredMaterialsMaterialId");
-
-                    b.HasIndex("RequiredMaterialsMaterialId");
-
-                    b.ToTable("ArmorMaterial");
-
-                    b.HasData(
-                        new
-                        {
-                            RequiredByArmorArmorId = 1,
-                            RequiredMaterialsMaterialId = 1
-                        },
-                        new
-                        {
-                            RequiredByArmorArmorId = 1,
-                            RequiredMaterialsMaterialId = 2
-                        },
-                        new
-                        {
-                            RequiredByArmorArmorId = 1,
-                            RequiredMaterialsMaterialId = 3
-                        },
-                        new
-                        {
-                            RequiredByArmorArmorId = 2,
-                            RequiredMaterialsMaterialId = 4
-                        },
-                        new
-                        {
-                            RequiredByArmorArmorId = 2,
-                            RequiredMaterialsMaterialId = 5
-                        },
-                        new
-                        {
-                            RequiredByArmorArmorId = 2,
-                            RequiredMaterialsMaterialId = 6
-                        },
-                        new
-                        {
-                            RequiredByArmorArmorId = 3,
-                            RequiredMaterialsMaterialId = 7
-                        },
-                        new
-                        {
-                            RequiredByArmorArmorId = 3,
-                            RequiredMaterialsMaterialId = 8
-                        },
-                        new
-                        {
-                            RequiredByArmorArmorId = 3,
-                            RequiredMaterialsMaterialId = 9
-                        });
-                });
-
-            modelBuilder.Entity("MaterialWeapon", b =>
-                {
-                    b.Property<int>("RequiredByWeaponsWeaponId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RequiredMaterialsMaterialId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RequiredByWeaponsWeaponId", "RequiredMaterialsMaterialId");
-
-                    b.HasIndex("RequiredMaterialsMaterialId");
-
-                    b.ToTable("MaterialWeapon");
-
-                    b.HasData(
-                        new
-                        {
-                            RequiredByWeaponsWeaponId = 1,
-                            RequiredMaterialsMaterialId = 1
-                        },
-                        new
-                        {
-                            RequiredByWeaponsWeaponId = 1,
-                            RequiredMaterialsMaterialId = 2
-                        },
-                        new
-                        {
-                            RequiredByWeaponsWeaponId = 1,
-                            RequiredMaterialsMaterialId = 3
-                        },
-                        new
-                        {
-                            RequiredByWeaponsWeaponId = 2,
-                            RequiredMaterialsMaterialId = 4
-                        },
-                        new
-                        {
-                            RequiredByWeaponsWeaponId = 2,
-                            RequiredMaterialsMaterialId = 5
-                        },
-                        new
-                        {
-                            RequiredByWeaponsWeaponId = 2,
-                            RequiredMaterialsMaterialId = 6
-                        },
-                        new
-                        {
-                            RequiredByWeaponsWeaponId = 3,
-                            RequiredMaterialsMaterialId = 7
-                        },
-                        new
-                        {
-                            RequiredByWeaponsWeaponId = 3,
-                            RequiredMaterialsMaterialId = 8
-                        },
-                        new
-                        {
-                            RequiredByWeaponsWeaponId = 3,
-                            RequiredMaterialsMaterialId = 9
-                        });
-                });
 
             modelBuilder.Entity("MonsterHunterMini.Armor", b =>
                 {
@@ -160,14 +39,7 @@ namespace MonsterHunterMini.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlayerId")
-                        .HasColumnType("int");
-
                     b.HasKey("ArmorId");
-
-                    b.HasIndex("PlayerId")
-                        .IsUnique()
-                        .HasFilter("[PlayerId] IS NOT NULL");
 
                     b.ToTable("Armor");
 
@@ -200,12 +72,22 @@ namespace MonsterHunterMini.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlayerId"));
 
+                    b.Property<int>("EquippedArmorArmorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EquippedWeaponWeaponId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
                     b.HasKey("PlayerId");
+
+                    b.HasIndex("EquippedArmorArmorId");
+
+                    b.HasIndex("EquippedWeaponWeaponId");
 
                     b.ToTable("Players");
                 });
@@ -217,6 +99,9 @@ namespace MonsterHunterMini.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaterialId"));
+
+                    b.Property<int?>("ArmorId")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("DropRate")
                         .HasColumnType("decimal(18,2)");
@@ -231,13 +116,20 @@ namespace MonsterHunterMini.Migrations
                     b.Property<int?>("PlayerId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("WeaponId")
+                        .HasColumnType("int");
+
                     b.HasKey("MaterialId");
+
+                    b.HasIndex("ArmorId");
 
                     b.HasIndex("MonsterId");
 
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("Materials");
+                    b.HasIndex("WeaponId");
+
+                    b.ToTable("Material");
 
                     b.HasData(
                         new
@@ -387,16 +279,9 @@ namespace MonsterHunterMini.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlayerId")
-                        .HasColumnType("int");
-
                     b.HasKey("WeaponId");
 
-                    b.HasIndex("PlayerId")
-                        .IsUnique()
-                        .HasFilter("[PlayerId] IS NOT NULL");
-
-                    b.ToTable("Weapons");
+                    b.ToTable("Weapon");
 
                     b.HasData(
                         new
@@ -419,47 +304,31 @@ namespace MonsterHunterMini.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ArmorMaterial", b =>
+            modelBuilder.Entity("MonsterHunterMini.Classes.Player", b =>
                 {
-                    b.HasOne("MonsterHunterMini.Armor", null)
+                    b.HasOne("MonsterHunterMini.Armor", "EquippedArmor")
                         .WithMany()
-                        .HasForeignKey("RequiredByArmorArmorId")
+                        .HasForeignKey("EquippedArmorArmorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MonsterHunterMini.Material", null)
+                    b.HasOne("MonsterHunterMini.Weapon", "EquippedWeapon")
                         .WithMany()
-                        .HasForeignKey("RequiredMaterialsMaterialId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MaterialWeapon", b =>
-                {
-                    b.HasOne("MonsterHunterMini.Weapon", null)
-                        .WithMany()
-                        .HasForeignKey("RequiredByWeaponsWeaponId")
+                        .HasForeignKey("EquippedWeaponWeaponId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MonsterHunterMini.Material", null)
-                        .WithMany()
-                        .HasForeignKey("RequiredMaterialsMaterialId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                    b.Navigation("EquippedArmor");
 
-            modelBuilder.Entity("MonsterHunterMini.Armor", b =>
-                {
-                    b.HasOne("MonsterHunterMini.Classes.Player", "Player")
-                        .WithOne("EquippedArmor")
-                        .HasForeignKey("MonsterHunterMini.Armor", "PlayerId");
-
-                    b.Navigation("Player");
+                    b.Navigation("EquippedWeapon");
                 });
 
             modelBuilder.Entity("MonsterHunterMini.Material", b =>
                 {
+                    b.HasOne("MonsterHunterMini.Armor", null)
+                        .WithMany("Materials")
+                        .HasForeignKey("ArmorId");
+
                     b.HasOne("MonsterHunterMini.Monster", "Monster")
                         .WithMany("Drops")
                         .HasForeignKey("MonsterId");
@@ -468,34 +337,33 @@ namespace MonsterHunterMini.Migrations
                         .WithMany("Inventory")
                         .HasForeignKey("PlayerId");
 
+                    b.HasOne("MonsterHunterMini.Weapon", null)
+                        .WithMany("Materials")
+                        .HasForeignKey("WeaponId");
+
                     b.Navigation("Monster");
 
                     b.Navigation("Player");
                 });
 
-            modelBuilder.Entity("MonsterHunterMini.Weapon", b =>
+            modelBuilder.Entity("MonsterHunterMini.Armor", b =>
                 {
-                    b.HasOne("MonsterHunterMini.Classes.Player", "Player")
-                        .WithOne("EquippedWeapon")
-                        .HasForeignKey("MonsterHunterMini.Weapon", "PlayerId");
-
-                    b.Navigation("Player");
+                    b.Navigation("Materials");
                 });
 
             modelBuilder.Entity("MonsterHunterMini.Classes.Player", b =>
                 {
-                    b.Navigation("EquippedArmor")
-                        .IsRequired();
-
-                    b.Navigation("EquippedWeapon")
-                        .IsRequired();
-
                     b.Navigation("Inventory");
                 });
 
             modelBuilder.Entity("MonsterHunterMini.Monster", b =>
                 {
                     b.Navigation("Drops");
+                });
+
+            modelBuilder.Entity("MonsterHunterMini.Weapon", b =>
+                {
+                    b.Navigation("Materials");
                 });
 #pragma warning restore 612, 618
         }

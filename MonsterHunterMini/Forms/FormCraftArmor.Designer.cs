@@ -49,6 +49,7 @@
             buttonCraft.TabIndex = 1;
             buttonCraft.Text = "Craft";
             buttonCraft.UseVisualStyleBackColor = true;
+            buttonCraft.Click += buttonCraft_Click;
             // 
             // buttonExit
             // 
@@ -69,6 +70,7 @@
             Controls.Add(listArmor);
             Name = "FormCraftArmor";
             Text = "FormCraftArmor";
+            Load += FormCraftArmor_Load;
             ResumeLayout(false);
         }
 

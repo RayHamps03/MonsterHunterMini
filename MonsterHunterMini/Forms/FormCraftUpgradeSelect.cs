@@ -21,5 +21,12 @@ namespace MonsterHunterMini.Forms
             Form1 form1 = new Form1();
             form1.Show();
         }
+
+        private void buttonCraftArmor_Click(object sender, EventArgs e)
+        {
+            Close();
+            FormCraftArmor craftArmor = new();
+            craftArmor.Show();
+        }
     }
 }

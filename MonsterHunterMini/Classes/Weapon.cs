@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonsterHunterMini.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
@@ -34,6 +35,17 @@ public class Weapon
     /// </summary>
     public double Attack { get; set; }
 
-    public List<Material>? Materials { get; set; }
+    /// <summary>
+    /// Foreign key property representing the relationship between the Weapons and
+    /// Player entities, indicating that the player owns this weapon.
+    /// </summary>
+    public int? PlayerId { get; set; }
+
+    /// <summary>
+    /// Navigation property for the related Player entity.
+    /// </summary>
+    public Player? Player { get; set; }
+
+    public List<Material>? RequiredMaterials { get; set; }
 
 }

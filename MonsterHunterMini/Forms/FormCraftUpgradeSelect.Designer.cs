@@ -42,6 +42,7 @@
             buttonCraftArmor.TabIndex = 0;
             buttonCraftArmor.Text = "Craft Armor";
             buttonCraftArmor.UseVisualStyleBackColor = true;
+            buttonCraftArmor.Click += buttonCraftArmor_Click;
             // 
             // buttonCraftWeapon
             // 

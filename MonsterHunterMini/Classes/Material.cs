@@ -54,24 +54,16 @@ public class Material
     public Player? Player { get; set; }
 
     /// <summary>
-    /// Foreign key property to establish relationship with the Armor entity.
+    /// Collections of associated weapons that can be crafted using this material.
+    /// Represents a many-to-many relationship.
     /// </summary>
-    public int? ArmorId { get; set; }
+    public List<Weapon>? RequiredByWeapons { get; set; }
 
     /// <summary>
-    /// Navigation property to the related Armor entity.
+    /// Collection of associated armor that can be crafted using this material.
+    /// Represents a many-to-many relationship.
     /// </summary>
-    public Armor? Armor { get; set; }
-
-    /// <summary>
-    /// Foreign key property to establish relationship with the Weapon entity.
-    /// </summary>
-    public int? WeaponId { get; set; }
-
-    /// <summary>
-    /// Navigation property to the related Weapon entity.
-    /// </summary>
-    public Weapon? Weapon { get; set; }
+    public List<Armor>? RequiredByArmor { get; set; }
 
     /// <summary>
     /// Gets or sets the rate at which items are dropped after monster's defeat. Should be 
