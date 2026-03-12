@@ -47,7 +47,10 @@ namespace MonsterHunterMini.Forms
         private async Task LoadArmorAsync()
         {
             using MonsterHunterMiniDb db = new();
-            Player player = await PlayerDb.LoadPlayerAsync(1);
+            Player player = await db.Players
+        .Include(p => p.Inventory)
+        .FirstAsync(p => p.PlayerId == 1);
+
             var playerMaterialNames = player.Inventory
                 .Select(m => m.Name)
                 .ToList();

@@ -84,7 +84,34 @@ public class MonsterHunterMiniDb : DbContext
                 new { RequiredMaterialsMaterialId = 8, RequiredByWeaponsWeaponId = 3 },
                 new { RequiredMaterialsMaterialId = 9, RequiredByWeaponsWeaponId = 3 }));
 
-        
+        // Player has many owned weapons
+        modelBuilder.Entity<Weapon>()
+            .HasOne(w => w.Player)
+            .WithMany()
+            .HasForeignKey(w => w.PlayerId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        // Player has one equipped weapon
+        modelBuilder.Entity<Player>()
+            .HasOne(p => p.EquippedWeapon)
+            .WithMany()
+            .HasForeignKey(p => p.EquippedWeaponId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        // Player has many owned armor pieces
+        modelBuilder.Entity<Armor>()
+            .HasOne(a => a.Player)
+            .WithMany()
+            .HasForeignKey(a => a.PlayerId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        // Player has one equipped armor
+        modelBuilder.Entity<Player>()
+            .HasOne(p => p.EquippedArmor)
+            .WithMany()
+            .HasForeignKey(p => p.EquippedArmorId)
+            .OnDelete(DeleteBehavior.Restrict);
+
 
 
     }
